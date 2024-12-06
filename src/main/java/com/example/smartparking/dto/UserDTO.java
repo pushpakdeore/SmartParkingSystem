@@ -16,15 +16,15 @@ public class UserDTO {
     private String email;
     private String phone;
     private List<String> registeredVehicles;
-    private List<Reservation> reservations;
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
+//    private List<Reservation> reservations;
+//
+//    public void setReservations(List<Reservation> reservations) {
+//        this.reservations = reservations;
+//    }
+//
+//    public List<Reservation> getReservations() {
+//        return reservations;
+//    }
 
     public Long getId() {
         return id;

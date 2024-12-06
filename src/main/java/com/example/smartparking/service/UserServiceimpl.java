@@ -52,7 +52,7 @@ public class UserServiceimpl implements UserService {
         u.setName(userDTO.getName());
         u.setRegisteredVehicles(userDTO.getRegisteredVehicles());
         u.setPhone(userDTO.getPhone());
-        u.setReservations(userDTO.getReservations());
+//        u.setReservations(userDTO.getReservations());
         return u;
     }
 }
