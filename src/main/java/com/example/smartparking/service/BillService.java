@@ -1,5 +1,6 @@
 package com.example.smartparking.service;
 
+import com.example.smartparking.dto.BillDTO;
 import com.example.smartparking.model.Bill;
 import com.example.smartparking.model.Reservation;
 
@@ -8,7 +9,10 @@ public interface BillService {
 
     Bill updateBillPaymentStatus(Long billId, String status);
 
-    Bill getBill(Long resid);
+    BillDTO getBill(Long resid);
 
-    Bill payBill(Long billId);
+    BillDTO payBill(Long billId);
+
+    double revenue();
+
 }

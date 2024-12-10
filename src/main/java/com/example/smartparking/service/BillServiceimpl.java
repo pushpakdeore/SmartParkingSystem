@@ -1,5 +1,6 @@
 package com.example.smartparking.service;
 
+import com.example.smartparking.dto.BillDTO;
 import com.example.smartparking.exception.CustomException;
 import com.example.smartparking.model.Bill;
 import com.example.smartparking.model.Reservation;
@@ -13,6 +14,7 @@ import java.time.Duration;
 public class BillServiceimpl implements BillService {
     @Autowired
     private BillRepository billRepository;
+    double  revenue =0;
 
     @Override
     public Bill generateBill(Reservation reservation) {
@@ -31,6 +33,7 @@ public class BillServiceimpl implements BillService {
         Bill bill = new Bill();
         bill.setReservation(reservation);
         bill.setAmount(amount);
+        revenue = revenue+amount;
         bill.setPaymentStatus("Unpaid");
         return billRepository.save(bill);
     }
@@ -41,18 +44,40 @@ public class BillServiceimpl implements BillService {
         bill.setPaymentStatus(status);
         return billRepository.save(bill);
     }
-
     @Override
-    public Bill getBill(Long resid) {
-        return billRepository.findById(resid).orElseThrow(() -> new CustomException("Bill is not generated yet"));
+    public BillDTO getBill(Long billid) {
+        Bill u = billRepository.findById(billid).orElseThrow(() -> new CustomException("Bill is not generated yet"));
+        return BilltoDTO(u);
     }
 
     @Override
-    public Bill payBill(Long billId) {
+    public BillDTO payBill(Long billId) {
         Bill bill = billRepository.findById(billId).orElseThrow(() -> new CustomException("BillID not found"));
         bill.setPaymentStatus("paid");
+        billRepository.save(bill);
+        BillDTO b = BilltoDTO(bill);
 
-        return billRepository.save(bill);
+        return b;
+    }
+
+    @Override
+    public double revenue() {
+        return revenue;
+    }
+
+    public static  BillDTO BilltoDTO(Bill bill){
+        BillDTO b =new BillDTO();
+        b.setId(bill.getId());
+        b.setEndTime(bill.getReservation().getEndTime());
+        b.setStartTime(bill.getReservation().getStartTime());
+        b.setStatus(bill.getPaymentStatus());
+        b.setVehicleNumber(bill.getReservation().getVehicleNumber());
+        b.setUser_id(bill.getReservation().getUser().getId());
+        b.setSlot_id(bill.getReservation().getParkingSlot().getId());
+        b.setAmount(bill.getAmount());
+        return b;
+
+
     }
 //@Autowired
 //private BillRepository billRepository;

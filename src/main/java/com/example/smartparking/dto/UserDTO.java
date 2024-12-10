@@ -16,6 +16,22 @@ public class UserDTO {
     private String email;
     private String phone;
     private List<String> registeredVehicles;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    private List<Reservation> reservations;
 //
 //    public void setReservations(List<Reservation> reservations) {

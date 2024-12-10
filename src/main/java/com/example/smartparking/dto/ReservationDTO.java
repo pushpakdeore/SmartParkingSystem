@@ -11,18 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReservationDTO
 {
-   // @NotNull(message = "User  ID cannot be null")
     private Long userId;
-
-   // @NotNull(message = "Slot ID cannot be null")
     private Long slotId;
-
-    //@NotNull(message = "Vehicle number cannot be null")
     private String vehicleNumber;
-
-   // @NotNull(message = "Start time cannot be null")
     private LocalDateTime startTime;
-
-   // @NotNull(message = "End time cannot be null")
     private LocalDateTime endTime;
 }
